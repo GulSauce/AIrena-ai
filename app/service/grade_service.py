@@ -12,19 +12,16 @@ class GradeService:
         self.ai_manager = AIManager()
 
     def grade_text(self, request: GradeTextRequest):
-
         parser = PydanticOutputParser(pydantic_object=GradeTextResponse)
 
-        generated_quiz_has_parsing_format = (
-            FunctionExecutionTimeMeasurer.run_function(
-                "주관식 채점 태스크",
-                self.ai_manager.chat,
-                self.quiz_generation_prompt.format(
-                        answers=request.submitAnswers,
-                        correct_answer=request.correctAnswer,
-                    ),
-                parser
-            )
+        generated_quiz_has_parsing_format = FunctionExecutionTimeMeasurer.run_function(
+            "주관식 채점 태스크",
+            self.ai_manager.chat,
+            self.quiz_generation_prompt.format(
+                answers=request.submitAnswers,
+                correct_answer=request.correctAnswer,
+            ),
+            parser,
         )
 
         result = parser.parse(generated_quiz_has_parsing_format)

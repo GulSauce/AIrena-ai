@@ -9,6 +9,7 @@ router = APIRouter()
 def get_grade_service():
     return GradeService()
 
+
 @router.post("/grade/text")
 def generate_quiz(
     gradeTextRequest: GradeTextRequest,
