@@ -23,10 +23,6 @@ single_choice_quiz_generation_prompt = PromptTemplate(
         
         ## 응답 언어
         한국어
-        
-        ## 어투
-        부드러운 말투
-        퀴즈 출제자 말투
     """,
     input_variables=["title", "subject", "description", "count", "reference"],
 )
